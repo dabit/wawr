@@ -1,6 +1,9 @@
-class RootController
+class RootController < Controller
   def show
-    response = "<html><body><h1>Hello World</h1></body></html>"
+    @name = params["name"]
+    response = render_with_layout('views/root/show.html.haml',
+                                  layout: 'views/layout/application.html.haml',
+                                  context: binding)
 
     [200, {"Content-Length" => response.length.to_s}, [response]]
   end
