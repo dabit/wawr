@@ -5,15 +5,15 @@ class Controller
     self.env = env
   end
 
-  def render_template(view_path, context: self)
+  def render(view_path, context = self)
     template = load_template_file(view_path)
     Haml::Engine.new(template).render(context)
   end
 
-  def render_with_layout(view_path, layout: "", context: self)
-    layout_template = load_template_file(layout)
-    Haml::Engine.new(layout_template).render(self) do
-      render_template(view_path)
+  def render_with_layout(view_path, context = self)
+    layout_template = load_template_file('views/layout/application.html.haml')
+    Haml::Engine.new(layout_template).render(context) do
+      render(view_path, context)
     end
   end
 

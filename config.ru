@@ -1,9 +1,3 @@
-#run -> (env) {
-  #puts env
-  #[200, {}, []]
-#}
-#
-
 $: << '.'
 
 require 'haml'
